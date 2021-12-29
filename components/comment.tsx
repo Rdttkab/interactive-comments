@@ -2,14 +2,15 @@ import data from "../public/data.json";
 import styles from "./comment.module.scss";
 import Image from "next/image";
 
-const Comment = () => {
+const Comment = (props) => {
     return (
         <main className={styles.main}>
             <div className={styles.score}>
                 <button className={styles.upvote}>
                     <Image src="/images/icon-plus.svg" width={10} height={10} />
                 </button>
-                <span>{data.comments[0].score}</span>
+                {/* <span>{data.comments[0].score}</span> */}
+                <span>{props.data.comments[0].score}</span>
                 <button className={styles.downvote}>
                     <Image src="/images/icon-minus.svg" width={10} height={10} />
                 </button>

@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Comment from "../components/comment";
 import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,10 +19,35 @@ const Home: NextPage = () => {
         />
         <title>Frontend Mentor | Interactive comments section</title>
       </Head>
-      <Comment />
+      <Comment data={props.data} />
       <Footer />
     </div>
   );
 };
+
+export async function getStaticProps() {
+  let data = [];
+
+  try {
+    const res = await fetch("https://3000-green-crocodile-ajuc7leq.ws-eu25.gitpod.io/api",
+    {
+        method: "GET",
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+          Accept: "application/json; charset=UTF-8",
+        },
+      }
+    )
+    data = await res.json()
+  
+    console.log(data)
+  } catch (e) {
+    console.log(e)
+  }
+  return {
+    props: { data },
+  }
+}
 
 export default Home;

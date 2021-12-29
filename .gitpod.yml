@@ -1,6 +1,9 @@
 tasks:
   - init: npm install
-    command: npm run dev
+    command: | 
+      export DATA_URL=`gp url 3004`
+      npm run dev
+  - command: node_modules/.bin/json-server public/data.json --port 3004
 
 github:
   prebuilds:
