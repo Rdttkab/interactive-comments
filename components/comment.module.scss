@@ -1,0 +1,68 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 732px;
+    padding: 1.5rem;
+    background-color: var(--white);
+    border-radius: 10px;
+
+    .score {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width: 2.5rem;
+      background-color: var(--light-gray);
+      border-radius: 5px;
+      padding: 12px;
+
+      .upvote, .downvote {
+        border: none;
+        outline: none;
+      }
+
+      span {
+        margin: 22px 0;
+        color: var(--moderate-blue);
+        font-weight: 700;
+      }
+    }
+
+    .comment {
+      margin-left: 26px;
+      align-self: stretch;
+
+      .user {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &_username {
+          margin-left: 10px;
+          margin-right: 19px;
+        }
+
+        &_reply {
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+          color: var(--moderate-blue);
+          font-weight: 500;
+
+          :last-child {
+            margin-left: 10px;
+            margin-right: 26px;
+          }
+        }
+      }
+
+      .content {
+          margin-top: 20px;
+          color: var(--grayish-blue);
+          line-height: 1.5;
+      }
+    }
+  }

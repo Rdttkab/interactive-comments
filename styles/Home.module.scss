@@ -1,29 +1,8 @@
 .container {
-  padding: 0 2rem;
-}
-
-.main {
-  min-height: 100%;
-  padding: 4rem 0;
-  flex: 1;
+  min-height: 100vh;
+  background-color: var(--light-gray);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .score {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 100%;
-  }
-
-  .comment {
-    .user {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-  }
 }
