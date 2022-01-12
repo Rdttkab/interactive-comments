@@ -1,7 +1,9 @@
-.main {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin-bottom: 20px;
 
     width: 732px;
     padding: 1.5rem;
@@ -45,10 +47,32 @@
           margin-right: 19px;
         }
 
-        &_reply {
+        &_current_user {
+          border-radius: 2px;
+          background-color: var(--moderate-blue);
+          color: var(--white);
+          padding: 6px;
+          font-weight: 400;
+          margin-right: 17px;
+        }
+
+        &_delete_reply {
           flex-grow: 1;
-          display: flex;
+          display: inline-flex;
           justify-content: flex-end;
+        }
+
+        &_delete {
+          color: var(--soft-red);
+          font-weight: 500;
+          
+          :last-child {
+            margin-left: 10px;
+            margin-right: 26px;
+          }
+        }
+
+        &_reply {
           color: var(--moderate-blue);
           font-weight: 500;
 

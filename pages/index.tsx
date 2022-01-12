@@ -1,10 +1,21 @@
-import type { NextPage } from "next";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Footer from "../components/footer";
 import Comment from "../components/comment";
 import styles from "../styles/Home.module.scss";
+import { Comments, CommentArray } from "../interface";
+import { Key, CSSProperties } from "react";
 
-const Home: NextPage = (props) => {
+type Props = {
+  commentsData: Comments
+}
+
+const commentStyle: CSSProperties = {
+  marginLeft: "88px",
+  width: "644px"
+};
+
+const Home = ({ commentsData }: Props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,35 +30,45 @@ const Home: NextPage = (props) => {
         />
         <title>Frontend Mentor | Interactive comments section</title>
       </Head>
-      <Comment data={props.data} />
+      {commentsData.comments.map((comment: CommentArray, index: Key) => {
+        return (
+          <>
+            <Comment key={index} comment={comment} />
+            {comment.replies.length === 0
+              ? ""
+              : comment.replies.map((reply, index) => {
+                  return (
+                    <Comment
+                      key={index}
+                      comment={reply}
+                      comments={commentsData}
+                      style={commentStyle}
+                    />
+                  );
+                })}
+          </>
+        );
+      })}
       <Footer />
     </div>
   );
 };
 
-export async function getStaticProps() {
-  let data = [];
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/comment`);
+  const data: Comments = await res.json();
 
-  try {
-    const res = await fetch("https://3000-green-crocodile-ajuc7leq.ws-eu25.gitpod.io/api",
-    {
-        method: "GET",
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-          Accept: "application/json; charset=UTF-8",
-        },
-      }
-    )
-    data = await res.json()
-  
-    console.log(data)
-  } catch (e) {
-    console.log(e)
+  if (!data) {
+    return {
+      notFound: true,
+    };
   }
+
   return {
-    props: { data },
-  }
-}
+    props: {
+      commentsData: data,
+    },
+  };
+};
 
 export default Home;
