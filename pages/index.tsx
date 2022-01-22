@@ -7,8 +7,8 @@ import { Comments, CommentArray } from "../interface";
 import { Key, CSSProperties } from "react";
 
 type Props = {
-  commentsData: Comments
-}
+  commentsData: Comments;
+};
 
 const commentStyle: CSSProperties = {
   // marginLeft: "88px",
@@ -34,18 +34,17 @@ const Home = ({ commentsData }: Props) => {
         return (
           <>
             <Comment key={index} comment={comment} />
-            {comment.replies.length === 0
-              ? ""
-              : comment.replies.map((reply, index) => {
-                  return (
-                    <Comment
-                      key={index}
-                      comment={reply}
-                      comments={commentsData}
-                      style={commentStyle}
-                    />
-                  );
-                })}
+            {comment.replies.length !== 0 &&
+              comment.replies.map((reply, index) => {
+                return (
+                  <Comment
+                    key={index}
+                    comment={reply}
+                    comments={commentsData}
+                    style={commentStyle}
+                  />
+                );
+              })}
           </>
         );
       })}

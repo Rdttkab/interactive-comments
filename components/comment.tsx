@@ -47,11 +47,11 @@ const Comment = (props: {
             <h4>{props.comment.user.username}</h4>
           </div>
 
-          {isCurrentUser ? (
+          {isCurrentUser && (
             <div className={styles.user_current_user}>
               <span>You</span>
             </div>
-          ) : null}
+          )}
 
           <div className={styles.user_created_at}>
             <p>{props.comment.createdAt}</p>
