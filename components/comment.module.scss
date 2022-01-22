@@ -1,92 +1,101 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: var(--white);
+  border-radius: 10px;
 
+  @media (min-width: 376px) {
     width: 732px;
+    flex-direction: row;
     padding: 1.5rem;
-    background-color: var(--white);
-    border-radius: 10px;
+  }
+
+  .header {
+    width: 100%;
+    order: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+
+    @media (min-width: 376px) {
+      margin-top: 0;
+      width: auto;
+    }
 
     .score {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
       align-items: center;
-
-      width: 2.5rem;
+      padding: 15px;
+  
       background-color: var(--light-gray);
       border-radius: 5px;
-      padding: 12px;
 
-      .upvote, .downvote {
+      @media (min-width: 376px) {
+        flex-direction: column;
+        width: 2.5rem;
+        padding: 12px;
+        margin-top: 0;
+      }
+  
+      .upvote,
+      .downvote {
         border: none;
         outline: none;
       }
-
+  
       span {
-        margin: 22px 0;
         color: var(--moderate-blue);
         font-weight: 700;
-      }
-    }
-
-    .comment {
-      margin-left: 26px;
-      align-self: stretch;
-
-      .user {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        &_username {
-          margin-left: 10px;
-          margin-right: 19px;
+        margin: 0 15px;
+  
+        @media (min-width: 376px) {
+          margin: 22px 0;
         }
-
-        &_current_user {
-          border-radius: 2px;
-          background-color: var(--moderate-blue);
-          color: var(--white);
-          padding: 6px;
-          font-weight: 400;
-          margin-right: 17px;
-        }
-
-        &_delete_reply {
-          flex-grow: 1;
-          display: inline-flex;
-          justify-content: flex-end;
-        }
-
-        &_delete {
-          color: var(--soft-red);
-          font-weight: 500;
-          
-          :last-child {
-            margin-left: 10px;
-            margin-right: 26px;
-          }
-        }
-
-        &_reply {
-          color: var(--moderate-blue);
-          font-weight: 500;
-
-          :last-child {
-            margin-left: 10px;
-            margin-right: 26px;
-          }
-        }
-      }
-
-      .content {
-          margin-top: 20px;
-          color: var(--grayish-blue);
-          line-height: 1.5;
       }
     }
   }
+
+  .comment {
+    order: 1;
+    align-self: stretch;
+
+    @media (min-width: 376px) {
+      margin-left: 26px;
+      order: 2;
+    }
+
+    .user {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &_username {
+        margin-left: 10px;
+        margin-right: 19px;
+      }
+
+      &_current_user {
+        border-radius: 2px;
+        background-color: var(--moderate-blue);
+        color: var(--white);
+        padding: 6px;
+        font-weight: 400;
+        margin-right: 17px;
+      }
+    }
+
+    .content {
+      margin-top: 20px;
+      color: var(--grayish-blue);
+      line-height: 1.5;
+    }
+  }
+}

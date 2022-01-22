@@ -2,6 +2,8 @@ import styles from "./comment.module.scss";
 import Image from "next/image";
 import { CommentArray, Replies, Comments } from "../interface";
 import { CSSProperties } from "react";
+import DeleteReply from "./DeleteReply";
+import { useMediaQuery } from "react-responsive";
 
 const Comment = (props: {
   comment: CommentArray | Replies;
@@ -13,16 +15,22 @@ const Comment = (props: {
       ? true
       : false;
 
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 376px)" });
+
   return (
     <div className={styles.container} style={props.style}>
-      <div className={styles.score}>
-        <button className={styles.upvote}>
-          <Image src="/images/icon-plus.svg" width={10} height={10} />
-        </button>
-        <span>{props.comment.score}</span>
-        <button className={styles.downvote}>
-          <Image src="/images/icon-minus.svg" width={10} height={10} />
-        </button>
+      <div className={styles.header}>
+        <div className={styles.score}>
+          <button className={styles.upvote}>
+            <Image src="/images/icon-plus.svg" width={10} height={10} />
+          </button>
+          <span>{props.comment.score}</span>
+          <button className={styles.downvote}>
+            <Image src="/images/icon-minus.svg" width={10} height={10} />
+          </button>
+        </div>
+
+        {!isLargeScreen && <DeleteReply isCurrentUser={isCurrentUser} />}
       </div>
 
       <div className={styles.comment}>
@@ -48,27 +56,7 @@ const Comment = (props: {
           <div className={styles.user_created_at}>
             <p>{props.comment.createdAt}</p>
           </div>
-
-          <div className={styles.user_delete_reply}>
-            {isCurrentUser ? (
-              <div className={styles.user_delete}>
-                <span>
-                  <Image src="/images/icon-delete.svg" width={10} height={10} />
-                </span>
-                <span>Delete</span>
-              </div>
-            ) : null}
-            <div className={styles.user_reply}>
-              <span>
-                <Image
-                  src={`/images/icon-${isCurrentUser ? "edit" : "reply"}.svg`}
-                  width={10}
-                  height={10}
-                />
-              </span>
-              <span>{isCurrentUser ? "Edit" : "Reply"}</span>
-            </div>
-          </div>
+          {isLargeScreen && <DeleteReply isCurrentUser={isCurrentUser} />}
         </header>
 
         <div className={styles.content}>

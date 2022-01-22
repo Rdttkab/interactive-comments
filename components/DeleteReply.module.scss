@@ -1,0 +1,25 @@
+.user_delete_reply {
+  flex-grow: 1;
+  display: inline-flex;
+  justify-content: flex-end;
+
+  .user_delete {
+    color: var(--soft-red);
+    font-weight: 500;
+
+    :last-child {
+      margin-left: 10px;
+      margin-right: 26px;
+    }
+  }
+
+  .user_reply {
+    color: var(--moderate-blue);
+    font-weight: 500;
+
+    :last-child {
+      margin-left: 10px;
+      margin-right: 26px;
+    }
+  }
+}

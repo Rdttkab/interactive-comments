@@ -11,8 +11,8 @@ type Props = {
 }
 
 const commentStyle: CSSProperties = {
-  marginLeft: "88px",
-  width: "644px"
+  // marginLeft: "88px",
+  // width: "644px"
 };
 
 const Home = ({ commentsData }: Props) => {
