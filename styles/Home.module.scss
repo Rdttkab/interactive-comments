@@ -5,4 +5,59 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  padding: 16px;
+
+  .comment_form {
+    display: grid;
+    grid-template: 
+      "comment comment"
+      "avatar btn";
+    gap: 16px;
+
+    width: 100%;
+    padding: 16px;
+    background-color: var(--white);
+    border-radius: 5px;
+    
+    @media (min-width: 376px) {
+      width: 732px;
+      grid-template: "avatar comment btn";
+      grid-template-columns: auto 1fr auto;
+      padding: 26px;
+    }
+    
+    .avatar_container {
+      grid-area: avatar;
+      padding: 5px;
+    }
+
+    .comment_textarea {
+      grid-area: comment;
+      width: 100%;
+      border: 1px solid var(--light-grayish-blue);
+      outline: none;
+      border-radius: 5px;
+    }
+
+    .btn {
+      grid-area: btn;
+      justify-self: end;
+    }
+
+    .btn_comment {
+      padding: 19px;
+      border: none;
+      outline: none;
+      background-color: var(--moderate-blue);
+      border-radius: 5px;
+      color: var(--white);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    ::placeholder {
+      padding: 16px 24px;
+    }
+  }
 }

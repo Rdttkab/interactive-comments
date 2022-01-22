@@ -5,6 +5,7 @@ import Comment from "../components/comment";
 import styles from "../styles/Home.module.scss";
 import { Comments, CommentArray } from "../interface";
 import { Key, CSSProperties } from "react";
+import Image from "next/image";
 
 type Props = {
   commentsData: Comments;
@@ -48,6 +49,27 @@ const Home = ({ commentsData }: Props) => {
           </>
         );
       })}
+
+      <form className={styles.comment_form}>
+        <span className={styles.avatar_container}>
+          <Image
+            src={commentsData.currentUser.image.webp.slice(1)}
+            width={32}
+            height={32}
+          />
+        </span>
+        <textarea
+          name=""
+          id=""
+          cols={30}
+          rows={10}
+          placeholder="Add a comment..." className={styles.comment_textarea}></textarea>
+        <span className={styles.btn}>
+          <button type="submit" className={styles.btn_comment}>
+            Send
+          </button>
+        </span>
+      </form>
       <Footer />
     </div>
   );
