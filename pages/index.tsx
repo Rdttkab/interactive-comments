@@ -5,7 +5,7 @@ import Comment from "../components/comment";
 import styles from "../styles/Home.module.scss";
 import { Comments, CommentArray } from "../interface";
 import { Key, CSSProperties } from "react";
-import Image from "next/image";
+import CommentForm from "../components/CommentForm";
 
 type Props = {
   commentsData: Comments;
@@ -31,9 +31,10 @@ const Home = ({ commentsData }: Props) => {
         />
         <title>Frontend Mentor | Interactive comments section</title>
       </Head>
+
       {commentsData.comments.map((comment: CommentArray, index: Key) => {
         return (
-          <>
+          <div>
             <Comment key={index} comment={comment} />
             {comment.replies.length !== 0 &&
               comment.replies.map((reply, index) => {
@@ -46,30 +47,11 @@ const Home = ({ commentsData }: Props) => {
                   />
                 );
               })}
-          </>
+          </div>
         );
       })}
 
-      <form className={styles.comment_form}>
-        <span className={styles.avatar_container}>
-          <Image
-            src={commentsData.currentUser.image.webp.slice(1)}
-            width={32}
-            height={32}
-          />
-        </span>
-        <textarea
-          name=""
-          id=""
-          cols={30}
-          rows={10}
-          placeholder="Add a comment..." className={styles.comment_textarea}></textarea>
-        <span className={styles.btn}>
-          <button type="submit" className={styles.btn_comment}>
-            Send
-          </button>
-        </span>
-      </form>
+      <CommentForm commentsData={commentsData} />
       <Footer />
     </div>
   );
