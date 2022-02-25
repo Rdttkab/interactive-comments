@@ -1,32 +1,32 @@
-export type Image = {
-  png: string;
-  webp: string;
-};
-
 export type User = {
-  image: Image;
-  username: string;
-};
+  username: string    
+  avatar:   Avatar
+  comment:  Comments[]
+  replies:  Replies[]
+}
 
-export type Replies = {
-  id: number;
-  content: string;
-  createdAt: string;
-  score: number;
-  replyingTo: string;
-  user: User;
-};
-
-export type CommentArray = {
-  id: number;
-  content: string;
-  createdAt: string;
-  score: number;
-  user: User;
-  replies: Replies[];
-};
+export type Avatar = {
+  png:   string,
+  webp:   string,
+}
 
 export type Comments = {
-  currentUser: User;
-  comments: CommentArray[];
-};
+  content:   string
+  createdAt: Date  
+  updatedAt: Date 
+  score:     number
+  authorId:  number
+  author:    User      
+  replies:   Replies[]
+}
+
+export type Replies = {
+  content:   string
+  createdAt: Date  
+  updatedAt: Date 
+  score:     number
+  commentId: number
+  comment:   Comments   
+  authorId:  number
+  author:    User      
+}

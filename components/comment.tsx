@@ -1,21 +1,29 @@
 import styles from "./comment.module.scss";
 import Image from "next/image";
-import { CommentArray, Replies, Comments } from "../interface";
+import { Replies, Comments } from "../interface";
 import { CSSProperties } from "react";
 import DeleteReply from "./DeleteReply";
 import { useMediaQuery } from "react-responsive";
 
 const Comment = (props: {
-  comment: CommentArray | Replies;
+  comment: Comments | Replies;
   comments?: Comments;
   style?: CSSProperties;
 }) => {
+  const currentUser = "juliusomo"
+  // const isCurrentUser =
+  //   props.comment.user.username === props.comments?.currentUser.username
+  //     ? true
+  //     : false;
+
   const isCurrentUser =
-    props.comment.user.username === props.comments?.currentUser.username
+    props.comment.author.username === currentUser
       ? true
       : false;
 
   const isLargeScreen = useMediaQuery({ query: "(min-width: 376px)" });
+
+  const date = props.comment.createdAt; 
 
   return (
     <div className={styles.container} style={props.style}>
@@ -37,14 +45,14 @@ const Comment = (props: {
         <header className={styles.user}>
           <div className={styles.user_image}>
             <Image
-              src={props.comment.user.image.webp.slice(1)}
+              src={props.comment.author.avatar.webp.slice(1)}
               width={32}
               height={32}
             />
           </div>
 
           <div className={styles.user_username}>
-            <h4>{props.comment.user.username}</h4>
+            <h4>{props.comment.author.username}</h4>
           </div>
 
           {isCurrentUser && (
@@ -54,7 +62,7 @@ const Comment = (props: {
           )}
 
           <div className={styles.user_created_at}>
-            <p>{props.comment.createdAt}</p>
+            <p>{date}</p>
           </div>
           {isLargeScreen && <DeleteReply isCurrentUser={isCurrentUser} />}
         </header>

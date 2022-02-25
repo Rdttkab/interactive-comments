@@ -3,20 +3,18 @@ import Head from "next/head";
 import Footer from "../components/footer";
 import Comment from "../components/comment";
 import styles from "../styles/Home.module.scss";
-import { Comments, CommentArray } from "../interface";
+import { Comments } from "../interface";
 import { Key, CSSProperties } from "react";
 import CommentForm from "../components/CommentForm";
-
-type Props = {
-  commentsData: Comments;
-};
+import React from "react";
 
 const commentStyle: CSSProperties = {
   // marginLeft: "88px",
   // width: "644px"
 };
 
-const Home = ({ commentsData }: Props) => {
+const Home = ({ commentsData } ) => {
+  console.log(commentsData.comments);
   return (
     <div className={styles.container}>
       <Head>
@@ -32,11 +30,11 @@ const Home = ({ commentsData }: Props) => {
         <title>Frontend Mentor | Interactive comments section</title>
       </Head>
 
-      {commentsData.comments.map((comment: CommentArray, index: Key) => {
+      {commentsData.comments.map((comment: Comments, index: Key) => {
         return (
-          <div>
+          <React.Fragment key={index}>
             <Comment key={index} comment={comment} />
-            {comment.replies.length !== 0 &&
+            {/* {comment.replies.length !== 0 &&
               comment.replies.map((reply, index) => {
                 return (
                   <Comment
@@ -46,12 +44,13 @@ const Home = ({ commentsData }: Props) => {
                     style={commentStyle}
                   />
                 );
-              })}
-          </div>
+              })} */}
+          </React.Fragment>
         );
       })}
 
-      <CommentForm commentsData={commentsData} />
+      {/* <CommentForm commentsData={commentsData} /> */}
+      <CommentForm />
       <Footer />
     </div>
   );
